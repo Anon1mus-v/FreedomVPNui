@@ -1,0 +1,22 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
+tun:
+  enable: false
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+
+proxie: []
+
+proxy-groups:
+  - name: "GLOBAL"
+    type: select
+    proxies:
+      - DIRECT
+
+rules:
+  - MATCH,DIRECT
