@@ -11,3 +11,20 @@ body {
     color: #edf2ff;
     min-height: 100vh;
 }
+
+#main-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80%;
+}
+
+#VPN-btn {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
