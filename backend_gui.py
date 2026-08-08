@@ -3,8 +3,11 @@ import sys
 import os
 import webview
 import json
+import asyncio
 from mihomo_manager import MihomoManager
 from config_updater import apply_keys_to_mihomo
+from parsing import fetch_content, parse_all
+from dotenv import load_dotenv
 
 if getattr(sys, 'frozen', False):
     base_dir = sys._MEIPASS
@@ -15,6 +18,9 @@ template_folder = os.path.join(base_dir, 'templates')
 
 app = Flask(__name__, template_folder=template_folder, static_folder=template_folder)
 mihomo = MihomoManager()
+load_dotenv()
+raw_urls = os.getenv("URLS")
+urls = raw_urls.split(",")
 
 @app.route('/')
 def index():
@@ -41,12 +47,16 @@ def stop():
 @app.route('/update', methods=['GET', 'POST'])
 def update():
     try:
-        apply_keys_to_mihomo()
+        valid_results = asyncio.run(parse_all(urls))
+        apply_keys_to_mihomo(valid_results)
         return jsonify({'status': 'ok'})
     except Exception as e:
         print(f'Ошибка: {e}')
         return jsonify({'status': 'er'})
 
-if __name__ == "__main__":
+def run_server():
+    app.run(host='127.0.0.1', port=5000)
+
+def run_web():
     webview.create_window('FreedomVPN ui', 'http://127.0.0.1:5000', width=1000, height=800)
-    webview.start(app)
+    webview.start(run_server)

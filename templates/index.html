@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div id="left-panel">
-        ......
+    <div class="left-panel">
     </div>
-    <div id="main-panel">
-        <button id="refresh">refresh</button>
-        <button id="VPN-btn">VPN</button>
+    <div class="main-panel">
+        <button class="refresh-btn" id="refresh-btn">
+            <span class="text-btn">Refresh</span>
+        </button>
+        <button class="VPN-btn" id="VPN-btn">
+            <span class="text-btn">VPN</span>
+        </button>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -53,7 +53,8 @@ async def fetch_content(page_url):
         except Exception:
             return
 
-    tasks = [key_check(k) for k in found_keys]
+async def parse_all(urls):
+    tasks = [fetch_content(url) for url in urls]
     if tasks:
         await asyncio.gather(*tasks)
 
@@ -65,6 +66,3 @@ async def fetch_content(page_url):
         pass
 
     return valid_results
-
-if __name__ == '__main__':
-    asyncio.run(fetch_content(url))

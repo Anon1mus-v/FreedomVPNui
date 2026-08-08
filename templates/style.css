@@ -12,7 +12,7 @@ body {
     min-height: 100vh;
 }
 
-#main-panel {
+.main-panel {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,10 +21,51 @@ body {
     width: 80%;
 }
 
-#VPN-btn {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
+.VPN-btn {
+    width: 150px;
+  height: 150px;
+  border: none;
+  border-radius: 50%;
+  background-color: #2b4ba2; /* Синий цвет как на скриншоте */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  outline: none;
+}
+.VPN-btn:hover {
+  background-color: #1a2e6b;
+  transform: scale(1.1);
+}
+.VPN-btn:active {
+  background-color: #1a2e6b;
+  transform: scale(0.95);
+}
+
+.text-btn {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
