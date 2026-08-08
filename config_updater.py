@@ -3,7 +3,7 @@ import os
 import yaml
 from vless_parsing import parse_vless_url
 
-MIHOMO_API_URL = "https://127.0.0.1:9090"
+MIHOMO_API_URL = "http://127.0.0.1:9090"
 
 def apply_keys_to_mihomo(valid_results):
 
@@ -12,7 +12,7 @@ def apply_keys_to_mihomo(valid_results):
         return False
 
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(base_dir, 'confing_dir', 'config_yaml')
+    config_path = os.path.join(base_dir, 'config_dir', 'config.yaml')
 
     parsed_proxie = []
     proxy_names = []
@@ -73,7 +73,7 @@ def apply_keys_to_mihomo(valid_results):
             print(f'Ядро подхватило новый сервер!')
             return True
         else:
-            print(f"Mihomo вернул статус: {response.status_code}")
+            print(f"Mihomo вернул статус: {response.status_code}: {response.text}")
     except Exception as e:
         print(f'Не удалось связаться с ядром: {e}')
 
