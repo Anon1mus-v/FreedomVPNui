@@ -1,13 +1,14 @@
 import asyncio
 import time
 import re
+from urllib.parse import urlparse
 from aiohttp import ClientSession
 
 output_file = 'valid_keys.txt'  # файл для сохранения результатов
 
 valid_keys = []     # список для сохранения рабочих ключей (строки)
 valid_results = []  # список объектов {'key':..., 'ping':...}
-url = "https://vpnkeys.me/key/325416"  # URL страницы
+url = ""  # URL страницы
 
 async def fetch_content(page_url):
     found_keys = []
@@ -32,15 +33,9 @@ async def fetch_content(page_url):
 
     async def key_check(key):
         try:
-            address = key.split('?', 1)[0].split('@', 1)[1]
-            host_port = address.split('/', 1)[0]
-            if ':' in host_port:
-                host, port_part = host_port.split(':', 1)
-                m = re.search(r'\d+', port_part)
-                port = int(m.group()) if m else 443
-            else:
-                host = host_port
-                port = 443
+            address = urlparse(key)
+            host = address.hostname
+            port = address.port if address.port else 443
 
             start = time.perf_counter()
             reader, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=3)
