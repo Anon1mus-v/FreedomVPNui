@@ -48,11 +48,13 @@ def stop():
 def update():
     try:
         valid_results = asyncio.run(parse_all(urls))
-        apply_keys_to_mihomo(valid_results)
-        return jsonify({'status': 'ok'})
+        applied = apply_keys_to_mihomo(valid_results)
+        if not valid_results:
+            return jsonify({'status': 'no_valid_keys', 'message': 'Нет валидных ключей. Проверьте URL-адреса в .env и доступность источников.'})
+        return jsonify({'status': 'ok', 'count': len(valid_results), 'applied': applied})
     except Exception as e:
         print(f'Ошибка: {e}')
-        return jsonify({'status': 'er'})
+        return jsonify({'status': 'er', 'message': str(e)})
 
 def run_server():
     app.run(host='127.0.0.1', port=5000)

@@ -10,35 +10,60 @@ valid_keys = []     # список для сохранения рабочих к
 valid_results = []  # список объектов {'key':..., 'ping':...}
 url = ""  # URL страницы
 
+
+def reset_valid_data():
+    global valid_keys, valid_results
+    valid_keys = []
+    valid_results = []
+
+
+def normalize_urls(raw_urls):
+    if not raw_urls:
+        return []
+
+    if isinstance(raw_urls, str):
+        raw_urls = [raw_urls]
+
+    normalized = []
+    for item in raw_urls:
+        if item is None:
+            continue
+        for part in str(item).split(','):
+            candidate = part.strip()
+            if candidate:
+                normalized.append(candidate)
+    return normalized
+
+
 async def fetch_content(page_url):
-    found_keys = []
+    if not page_url:
+        return
+
     try:
         async with ClientSession() as session:
-            async with session.get(page_url, timeout=10) as resp:
+            async with session.get(page_url, timeout=10, headers={'User-Agent': 'Mozilla/5.0'}) as resp:
                 if resp.status != 200:
                     raise RuntimeError(f"Не удалось загрузить страницу, статус {resp.status}")
                 text = await resp.text()
     except Exception as e:
-        # логируем ошибку в файл для exe-версии
         try:
             with open('error.log', 'a', encoding='utf-8') as lf:
-                lf.write(f"Ошибка загрузки страницы: {e}\n")
+                lf.write(f"Ошибка загрузки страницы {page_url}: {e}\n")
         except Exception:
             pass
         return
 
-    # Собираем vless ключи (без кавычек/<>/пробелов)
     pattern = r"vless://[^\s'\"<>]+"
     found_keys = re.findall(pattern, text)
 
-    async def key_check(key):
+    for key in found_keys:
         try:
             address = urlparse(key)
             host = address.hostname
             port = address.port if address.port else 443
 
             start = time.perf_counter()
-            reader, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=3)
+            _, writer = await asyncio.wait_for(asyncio.open_connection(host, port), timeout=3)
             end = time.perf_counter()
 
             try:
@@ -48,13 +73,20 @@ async def fetch_content(page_url):
                 pass
 
             ping_ms = int((end - start) * 1000)
-            valid_keys.append(key)
-            valid_results.append({'key': key, 'ping': ping_ms})
+            if key not in valid_keys:
+                valid_keys.append(key)
+                valid_results.append({'key': key, 'ping': ping_ms})
         except Exception:
-            return
+            continue
+
 
 async def parse_all(urls):
-    tasks = [fetch_content(url) for url in urls]
+    reset_valid_data()
+    normalized_urls = normalize_urls(urls)
+    if not normalized_urls:
+        return []
+
+    tasks = [fetch_content(url) for url in normalized_urls]
     if tasks:
         await asyncio.gather(*tasks)
 

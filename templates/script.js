@@ -7,6 +7,9 @@ ref_btn.addEventListener('click', () => {
         .then(response => response.json())
         .then(data => {
             console.log('Ключи обновлены: ', data);
+            if (data.status === 'no_valid_keys') {
+                alert(data.message || 'Нет валидных ключей');
+            }
         })
         .catch(error => {
             console.error("Ошибка обновления:", error);
