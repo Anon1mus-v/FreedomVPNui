@@ -69,10 +69,25 @@
             </button>
         </div>
         <div class="tab-content" id="tab-profiles">
-            
+            <div class="profile-card">
+                <h3> Подписка / Ключ</h3>
+                <p class="profile-desc">URL на подписку</p>
+
+                 <div class="input-group">
+                    <input type="text" id="sub-url-input" placeholder="https://example.com/sub/..." autocomplete="off">
+                    <button id="save-sub-btn" class="action-btn">Сохранить</button>
+                 </div>
+                 <div id="sub-status" class="status-message"></div>
+            </div>
         </div>
         <div class="tab-content" id="tab-group-proxys">
-            
+            <div class="proxies-header">
+                <h3>Доступные серверы:</h3>
+                <span id="proxies-count" class="badge">0</span>
+            </div>
+            <div id="proxies-list" class="proxies-list">
+                <p class="empty-message">Список серверов пуст. Загрузите подписку в вкладке "Профили"</p>
+            </div>
         </div>
         <div class="tab-content" id="tab-connections">
             

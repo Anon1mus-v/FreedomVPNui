@@ -43,10 +43,13 @@ def parse_vless_url(vless_url: str) -> dict:
 
     if security == 'reality':
         reality_opts = {}
-        if 'pub' in params:
-            reality_opts['pub'] = params['pub'][0]
-        if 'shor' in params:
-            reality_opts['shor'] = params['shor'][0]
+
+        pbk = params.get('pbk') or params.get('pub')
+        sid = params.get('sid') or params.get('shor')
+        if pbk:
+            reality_opts['public-key'] = pbk[0]
+        if sid:
+            reality_opts['short-id'] = params['shor'][0]
         if reality_opts:
             proxy['reality-opts'] = reality_opts
 

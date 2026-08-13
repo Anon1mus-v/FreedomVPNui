@@ -53,3 +53,98 @@ vpn_btn.addEventListener('click', () => {
             })
             .catch(error => console.error('Ошибка:', error))
 })
+
+document.getElementById('save-sub-btn').addEventListener('click', async () => {
+    const urlInput = document.getElementById('sub-url-input');
+    const statusDiv = document.getElementById('sub-status');
+    const subUrl = urlInput.value.trim();
+
+    if (!subUrl) {
+        statusDiv.className = 'status-message error';
+        statusDiv.textContent = 'Пожалуйста, введите ссылку на подписку.';
+        return;
+    }
+
+    statusDiv.className = 'status-message';
+    statusDiv.textContent = 'Сохранение ссылки...';
+
+    try {
+        const response = await fetch('/api/update-subscription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ url: subUrl })
+        });
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            renderServers(data.servers)
+            statusDiv.className = 'status-message success';
+            statusDiv.textContent = 'Ссылка успешно сохранена.';
+            console.log('Ссылка на подписку успешно обновлена:', data.servers);
+        }
+        else {
+            statusDiv.className = 'status-message error';
+            statusDiv.textContent = data.message || 'Произошла ошибка при сохранении ссылки.';
+            console.error('Ошибка при обновлении ссылки на подписку:', data.message);
+        }
+    }
+    catch (error) {
+            statusDiv.className = 'status-message error';
+            statusDiv.textContent = 'Произошла ошибка при сохранении ссылки.';
+            console.error('Ошибка при обновлении ссылки на подписку:', error)}
+        })
+
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('/api/get-config');
+        const data = await response.json();
+
+        if(data.status === 'success' && data.config) {
+            const subInput = document.getElementById('sub-url-input');
+            if(subInput && data.config.sub_url) {
+                subInput.value = data.config.sub_url;
+            }
+            if(data.config.servers && data.config.servers.length > 0) {
+                renderServers(data.config.servers);
+            }
+        }}
+    catch (error) {
+            console.error('Ошибка при получении конфигурации:', error);
+        }});
+
+
+let availableServers = [];
+
+function renderServers(servers) {
+    availableServers = servers;
+    const listContainer = document.getElementById('proxies-list');
+    const countBadge = document.getElementById('proxies-count');
+
+    if (!servers || servers.length === 0) {
+        listContainer.innerHTML = '<p class="empty-message">Список серверов пуст.</p>';
+        countBadge.textContent = '0';
+        return;
+    }
+
+    countBadge.textContent = servers.length;
+    listContainer.innerHTML = '';
+
+    servers.forEach((server, index) => {
+        const card = document.createElement('div'); card.className = 'proxy-card';
+        card.innerHTML = `
+        <div class="proxy-info">
+            <span class="proxy-name">${server.name}</span>
+            <span class="proxy-type">${server.type}</span>
+        </div>
+        `;
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.proxy-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            console.log('Выбран сервер: ', server);
+        })
+        listContainer.appendChild(card);
+    })
+
+}
