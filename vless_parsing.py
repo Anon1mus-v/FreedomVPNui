@@ -45,9 +45,9 @@ def parse_vless_url(vless_url: str) -> dict:
         reality_opts = {}
 
         pbk = params.get('pbk') or params.get('pub')
-        sid = params.get('sid') or params.get('shor')
         if pbk:
             reality_opts['public-key'] = pbk[0]
+        sid = params.get('sid') or params.get('shor')
         if sid:
             reality_opts['short-id'] = params['shor'][0]
         if reality_opts:

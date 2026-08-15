@@ -140,6 +140,7 @@ function renderServers(servers) {
         </div>
         `;
         card.addEventListener('click', () => {
+            selectServer(server.name, card);
             document.querySelectorAll('.proxy-card').forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             console.log('Выбран сервер: ', server);
@@ -147,4 +148,31 @@ function renderServers(servers) {
         listContainer.appendChild(card);
     })
 
+async function selectServer(serverName, cardElement) {
+    try {
+        const response = await fetch('/api/select-server', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: serverName })
+        });
+        
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+            console.log('Выбран сервер:', serverName);
+            
+            // Убираем выделение со всех карточек и выделяем текущую
+            document.querySelectorAll('.server-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            cardElement.classList.add('active');
+        } else {
+            console.error('Ошибка переключения сервера:', data.message);
+        }
+    } catch (error) {
+        console.error('Ошибка сети при выборе сервера:', error);
+    }
+}
 }

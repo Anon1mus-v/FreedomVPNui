@@ -10,10 +10,10 @@ tun:
   auto-route: true
   auto-detect-interface: true
 
-proxie: []
+proxies: []
 
 proxy-groups:
-  - name: "GLOBAL"
+  - name: "Freedom-Group"
     type: select
     proxies:
       - DIRECT

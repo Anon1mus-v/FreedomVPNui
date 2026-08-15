@@ -12,6 +12,7 @@ from mihomo_manager import MihomoManager
 from config_updater import apply_keys_to_mihomo
 from parsing import fetch_content, parse_all
 from dotenv import load_dotenv
+from config_generator import generate_mihomo_config
 
 if getattr(sys, 'frozen', False):
     base_dir = sys._MEIPASS
@@ -127,6 +128,31 @@ def update_subscription():
         print("Тип config-data:", type(config_data))
         print("Содержимое: ", config_data)
         return jsonify({'status': 'error', 'message': f'Ошибка при получении данных: {str(e)}'}), 500
+
+@app.route('/api/select-server', methods=['POST'])
+def select_server():
+    data = request.get_json()
+    server_name = data.get('name')
+
+    if not server_name:
+        return jsonify({'status': 'error', 'message': 'Имя сервера не указано.'}), 400
+
+    try:
+        res = requests.put(
+            'http://127.0.0.1:9090/proxies/Freedom-Group',
+            json={'name': server_name},
+            timeout=2
+        )
+        print(f"Mihomo: {res.status_code}, текс: {res.text}")
+        if res.status_code in (200, 204):
+            config = load_config()
+            config['selected_server'] = server_name
+            save_config(config)
+            return jsonify({'status': 'succes', 'select': server_name})
+        else:
+            return jsonify({'status': 'error', 'message': f'Mihomo вернул код: {res.status_code}'}), 400
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': f'Mihomo REST API недоступен: {str(e)}'}), 500
 
 @app.route('/api/get-config', methods=['GET'])
 def get_config():

@@ -1,0 +1,60 @@
+{
+    "sub_url": "https://fgn.great-connection.net/Zgzw6RR18q3F-YPk",
+    "servers": [
+        {
+            "name": "🇩🇪  Германия (Универсальная)",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@deinst.good-server-list.life:8443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=deinst.good-server-list.life&fp=firefox#%F0%9F%87%A9%F0%9F%87%AA%20%20%D0%93%D0%B5%D1%80%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%20(%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F)"
+        },
+        {
+            "name": "🇷🇺 Россия (Youtube без рекламы)🛠️",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@ru.good-server-list.life:5497?encryption=none&type=ws&path=%2Fvless&security=tls&sni=ru.good-server-list.life&fp=firefox#%F0%9F%87%B7%F0%9F%87%BA%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%20(Youtube%20%D0%B1%D0%B5%D0%B7%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D1%8B)%F0%9F%9B%A0%EF%B8%8F"
+        },
+        {
+            "name": "🇩🇪  Германия (TikTok)",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@de-test.good-server-list.life:8443?encryption=none&type=ws&path=%2Fvless&security=tls&sni=de-test.good-server-list.life&fp=firefox#%F0%9F%87%A9%F0%9F%87%AA%20%20%D0%93%D0%B5%D1%80%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%20(TikTok)"
+        },
+        {
+            "name": "🇺🇸 США⭐",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@us.good-server-list.life:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=us.good-server-list.life&fp=firefox#%F0%9F%87%BA%F0%9F%87%B8%20%D0%A1%D0%A8%D0%90%E2%AD%90"
+        },
+        {
+            "name": "🇩🇪GAME 🕹️⭐",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@game-de.good-server-list.life:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=game-de.good-server-list.life&fp=firefox#%F0%9F%87%A9%F0%9F%87%AAGAME%20%F0%9F%95%B9%EF%B8%8F%E2%AD%90"
+        },
+        {
+            "name": "🇩🇪  Германия⭐",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@de.good-server-list.life:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=de.good-server-list.life&fp=firefox#%F0%9F%87%A9%F0%9F%87%AA%20%20%D0%93%D0%B5%D1%80%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%E2%AD%90"
+        },
+        {
+            "name": "🇫🇷 Франция",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@fr.good-server-list.life:8443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=fr.good-server-list.life&fp=firefox#%F0%9F%87%AB%F0%9F%87%B7%20%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F"
+        },
+        {
+            "name": "🇨🇦 Канада",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@ca.good-server-list.life:8443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=ca.good-server-list.life&fp=firefox#%F0%9F%87%A8%F0%9F%87%A6%20%D0%9A%D0%B0%D0%BD%D0%B0%D0%B4%D0%B0"
+        },
+        {
+            "name": "🇵🇱 Польша",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@pl.good-server-list.life:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=pl.good-server-list.life&fp=firefox#%F0%9F%87%B5%F0%9F%87%B1%20%D0%9F%D0%BE%D0%BB%D1%8C%D1%88%D0%B0"
+        },
+        {
+            "name": "🇰🇿 Казахстан",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@185.102.75.65:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=kz.good-server-list.life&fp=chrome#%F0%9F%87%B0%F0%9F%87%BF%20%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD"
+        },
+        {
+            "name": "🇫🇮Финляндия",
+            "type": "vless",
+            "link": "vless://cefeeb6b-d967-4717-b574-6b2e3d230c4b@fi.good-server-list.life:8443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=tls&sni=fi.good-server-list.life&fp=chrome#%F0%9F%87%AB%F0%9F%87%AE%D0%A4%D0%B8%D0%BD%D0%BB%D1%8F%D0%BD%D0%B4%D0%B8%D1%8F"
+        }
+    ]
+}

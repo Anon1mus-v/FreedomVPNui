@@ -7,7 +7,7 @@ import time
 class MihomoManager:
     def __init__(self):
         # Находим базовую папку проекта
-        if getattr(sys, 'frezen', False):
+        if getattr(sys, 'frozen', False):
             self.base_dir = sys._MEIPASS
         else:
             self.base_dir = os.path.dirname(os.path.abspath(__file__))
